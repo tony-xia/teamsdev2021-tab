@@ -3,57 +3,15 @@
 <script src='https://statics.teams.cdn.office.net/sdk/v1.6.0/js/MicrosoftTeams.min.js'></script>
 </head>
 <body>
-<span id="user"></span>
+UserPrincipalName: <span id="user"></span>
 <br/>
 <br/>
 
-        <button onclick="(document.getElementById('icon').src = '/images/iconGray.png'); colorClickGray()">Select Gray</button>
-        <img id="icon" src="/images/teamsIcon.png" alt="icon" style="width:100px" />
-        <button onclick="(document.getElementById('icon').src = '/images/iconRed.png'); colorClickRed()">Select Red</button>
+<script>
+    microsoftTeams.initialize();
+    microsoftTeams.settings.setValidityState(true);
 
-        <script>
-            microsoftTeams.initialize();
-            let saveGray = () => {
-                microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
-                    microsoftTeams.settings.setSettings({
-                        websiteUrl: "https://yourWebsite.com",
-                        contentUrl: "https://yourWebsite.com/gray",
-                        entityId: "grayIconTab",
-                        suggestedDisplayName: "MyNewTab"
-                    });
-                    saveEvent.notifySuccess();
-                });
-            }
-            let saveRed = () => {
-                microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
-                    microsoftTeams.settings.setSettings({
-                        websiteUrl: "https://yourWebsite.com",
-                        contentUrl: "https://yourWebsite.com/red",
-                        entityId: "redIconTab",
-                        suggestedDisplayName: "MyNewTab"
-                    });
-                    saveEvent.notifySuccess();
-                });
-            }
-
-            let gr = document.getElementById("gray").style;
-            let rd = document.getElementById("red").style;
-
-            const colorClickGray = () => {
-                gr.display = "block";
-                rd.display = "none";
-                microsoftTeams.settings.setValidityState(true);
-                saveGray()
-            }
-
-            const colorClickRed = () => {
-                rd.display = "block";
-                gr.display = "none";
-                microsoftTeams.settings.setValidityState(true);
-                saveRed();
-            }
-
-    microsoftTeams.getContext((context) =>{
+    microsoftTeams.getContext((context) => {
         let userId = document.getElementById('user');
         userId.innerHTML = context.userPrincipalName;
     });
