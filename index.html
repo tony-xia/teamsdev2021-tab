@@ -13,11 +13,11 @@ UserPrincipalName: <span id="user"></span>
 
     microsoftTeams.settings.registerOnSaveHandler((saveEvent) => {
         microsoftTeams.settings.setSettings({
-            websiteUrl: "https://orange-sand-0e75e1700.azurestaticapps.net/",
             contentUrl: "https://orange-sand-0e75e1700.azurestaticapps.net/",
             entityId: "mytab001",
             suggestedDisplayName: "MyDevTab"
         });
+        saveEvent.notifySuccess();
     });
 
     microsoftTeams.getContext((context) => {
